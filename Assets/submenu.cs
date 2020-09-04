@@ -6,14 +6,18 @@ using UnityEngine.UI;
 using System.IO;
 using SimpleJSON;
 using System.Threading;
+using UnityEngine.SceneManagement;
 
 public class submenu : MonoBehaviour
 {
     public Transform gos;
     public GameObject spawnee;
+    public GameObject item;
     private int no_gos;
     private int no_item;
+    private int item_number;
     public float counter;
+    public float timescale = 0f;
 
 
 
@@ -24,12 +28,19 @@ public class submenu : MonoBehaviour
         string strtempSettings = File.ReadAllText(path);
         JSONObject settingsJSON = (JSONObject)JSON.Parse(strtempSettings);
         no_gos = settingsJSON["no_goslings"];
+        no_item = settingsJSON["no_item"];
     }
 
     // Update is called once per frame
    void FixedUpdate()
     {
-        if (counter < no_gos) 
+        newClone();
+       
+        
+    }
+    void newClone()
+    {
+        if (counter <= no_gos)
         {
             if (Input.GetKeyDown("n"))//on click - will change
             {
@@ -39,8 +50,19 @@ public class submenu : MonoBehaviour
 
             }
         }
-       
-        
+    }
+    void newItem()
+    {
+        if (item_number <= no_item)
+        {
+            if (Input.GetKeyDown("k"))//this is also temporary
+            {
+                Instantiate(item, new Vector3(0, 0, 0), gos.rotation);
+                item_number++;
+            }
+            
+
+        }
     }
     void Destruction()
     {
@@ -52,11 +74,13 @@ public class submenu : MonoBehaviour
     }
     void SpeedTime()
     {
-
+        Time.timeScale = timescale + 1;
+        //need to do an button to increase the time
     }
     void SlowTime()
     {
-
+        Time.timeScale = timescale - 1;
+        //need to decrease the time + have a button
     }
     void PauseSim()
     {
@@ -68,7 +92,15 @@ public class submenu : MonoBehaviour
     }
     void helpButton()
     {
-
+        //this button needs to actually make sense - needs to know what is happening on screen + explain stuff properly. 
+    }
+    void loadSim()
+    {
+        SceneManager.LoadScene(PlayerPrefs.GetInt("SimSaved"));
+    }
+    void saveSim()
+    {
+        PlayerPrefs.SetInt("SimSaved", SceneManager.GetActiveScene().buildIndex);
     }
 
 

@@ -13,8 +13,6 @@ public class goslingBehaviour : MonoBehaviour
 
 {
     private bool evaluation;
-    private int no_gos;
-    private int no_item;
     public int hours = 0;
     public bool criticalPeriod;
     public int temp = 0;
@@ -45,8 +43,6 @@ public class goslingBehaviour : MonoBehaviour
         string strtempSettings = File.ReadAllText(path);
         JSONObject settingsJSON = (JSONObject)JSON.Parse(strtempSettings);
         evaluation = settingsJSON["evaluation"];
-        no_gos = settingsJSON["no_goslings"];
-        no_item = settingsJSON["no_items"];
         if (evaluation == false)
         {
             int upper = 48;
@@ -62,7 +58,7 @@ public class goslingBehaviour : MonoBehaviour
             }
             else if (hours < 24)
             {
-                Debug.Log("baby");
+                
                 StartCoroutine(time());
                 
 
@@ -84,7 +80,6 @@ public class goslingBehaviour : MonoBehaviour
             }
             else if(hours < 12)
             {
-                Debug.Log("baby");
                 StartCoroutine(time());
                 
 
@@ -108,6 +103,7 @@ public class goslingBehaviour : MonoBehaviour
         string minutes = ((int)t / 60).ToString();
         string seconds = ((int)t % 60).ToString();
         int hours = ((int)t / 60);
+        Debug.Log(hours);
         critical_period(hours);
 
     }
