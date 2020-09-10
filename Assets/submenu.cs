@@ -29,6 +29,7 @@ public class subMenu : MonoBehaviour
         JSONObject settingsJSON = (JSONObject)JSON.Parse(strtempSettings);
         no_gos = settingsJSON["no_goslings"];
         no_item = settingsJSON["no_item"];
+        //loads the no_gos settings and no_items
     }
 
     // Update is called once per frame

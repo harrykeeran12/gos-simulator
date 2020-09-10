@@ -8,7 +8,7 @@ public class mainMenu : MonoBehaviour
     public void NewSimulation()
     {
         Debug.Log("Starting New Simulation...");
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);
 
     }
     
@@ -22,7 +22,7 @@ public class mainMenu : MonoBehaviour
     {
         Debug.Log("Loaded Simulation");
         Debug.Log("Simulation has been loaded");
-        SceneManager.LoadScene(PlayerPrefs.GetInt("SimSaved"));
+        SceneManager.LoadScene(PlayerPrefs.GetInt("SimSaved"));//changed from build next one to building the new simulation
     }
 
     

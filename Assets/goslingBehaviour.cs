@@ -18,21 +18,16 @@ public class goslingBehaviour : MonoBehaviour
     public int temp = 0;
     private float startTime = 0;
     
-    private void Awake()//called at load
+     public class Gosling
     {
-  
-    }
-
-
-    public class Gosling
-    {
-        public ArrayList gosling_position = new ArrayList(3);
+        public ArrayList gosling_position = new ArrayList(3); //don't need this any more because of new savesystem 
+        //- i don't need to save the position of the elements.
         public ArrayList longest_item_looked_at = new ArrayList();
         public float time_spawned = 0;
         public bool criticalPeriod = false;
         
     }
-     IEnumerator time()//ienumerators allow you to wait for a certain period of time 
+     IEnumerator time()//ienumerators allow you to wait for a certain period of time -> this method of waiting for time does not work
     {
         yield return new WaitForSecondsRealtime(1);
     }
@@ -51,7 +46,7 @@ public class goslingBehaviour : MonoBehaviour
             {
                 criticalPeriod = true;
                 Debug.Log("critical period is true");
-                StartCoroutine(time());
+                StartCoroutine(time());//-> take this out
                 
 
 
@@ -59,8 +54,8 @@ public class goslingBehaviour : MonoBehaviour
             else if (hours < 24)
             {
                 
-                StartCoroutine(time());
-                
+                StartCoroutine(time());//-> take this out
+
 
 
             }
@@ -74,18 +69,18 @@ public class goslingBehaviour : MonoBehaviour
             {
                 criticalPeriod = true;
                 Debug.Log("critical period is true");
-                StartCoroutine(time());
-                
+                StartCoroutine(time());//-> take this out
+
 
             }
             else if(hours < 12)
             {
-                StartCoroutine(time());
-                
+                StartCoroutine(time());//-> take this out
+
 
             }
         }
-        StartCoroutine(time());
+        StartCoroutine(time());//-> take this out
 
 
     }
