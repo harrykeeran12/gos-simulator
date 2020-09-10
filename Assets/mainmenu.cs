@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class mainmenu : MonoBehaviour
+public class mainMenu : MonoBehaviour
 {
     public void NewSimulation()
     {
@@ -22,6 +22,7 @@ public class mainmenu : MonoBehaviour
     {
         Debug.Log("Loaded Simulation");
         Debug.Log("Simulation has been loaded");
+        SceneManager.LoadScene(PlayerPrefs.GetInt("SimSaved"));
     }
 
     

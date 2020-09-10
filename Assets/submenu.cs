@@ -8,7 +8,7 @@ using SimpleJSON;
 using System.Threading;
 using UnityEngine.SceneManagement;
 
-public class submenu : MonoBehaviour
+public class subMenu : MonoBehaviour
 {
     public Transform gos;
     public GameObject spawnee;

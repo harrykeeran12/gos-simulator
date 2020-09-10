@@ -11,7 +11,7 @@ using SimpleJSON;
 
 
 
-public class grap_settings : MonoBehaviour
+public class graphicalSettings : MonoBehaviour
 {
     public Text score;
     public Text score2;
@@ -26,7 +26,7 @@ public class grap_settings : MonoBehaviour
         temp_settings.Insert(1, "3");
         temp_settings.Insert(2, "1");
 
-    }
+    }//creates a list that temporarily stores 3 variables which can be later overwritten
 
     public void evaluationmode(bool evaluate)
     {
@@ -66,13 +66,29 @@ public class grap_settings : MonoBehaviour
         }
      public void SaveSettings()
     {
+        string path = Application.persistentDataPath + "/settings.json";
+        if (File.Exists(path))
+        {
         JSONObject settingsJSON = new JSONObject();//creates new json object for placing file in
         settingsJSON.Add("evaluation", temp_settings[0].ToString());
         settingsJSON.Add("no_goslings", temp_settings[1].ToString());
         settingsJSON.Add("no_items", temp_settings[2].ToString());
-        string path = Application.persistentDataPath + "/settings.json";
+        
         File.WriteAllText(path, settingsJSON.ToString());//writes to the file
         //saves file to %appdata%/locallow/DefaultCompany/gos sim/settings.json
+        }
+        else
+        {
+            File.Create(path);
+            JSONObject settingsJSON = new JSONObject();//creates new json object for placing file in
+            settingsJSON.Add("evaluation", temp_settings[0].ToString());
+            settingsJSON.Add("no_goslings", temp_settings[1].ToString());
+            settingsJSON.Add("no_items", temp_settings[2].ToString());
+
+            File.WriteAllText(path, settingsJSON.ToString());
+
+        }
+        
 
              
      
