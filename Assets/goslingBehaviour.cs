@@ -1,26 +1,27 @@
-﻿using JetBrains.Annotations;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.UI;
 using System.IO;
 using SimpleJSON;
-using System.Threading;
 
 public class goslingBehaviour : MonoBehaviour
 
+
+
 {
+    public float rayLength = 500f;
     private bool evaluation;
     public int hours = 0;
     public bool criticalPeriod;
     public int temp = 0;
     private float startTime = 0;
     
+    public LayerMask mask;
+
+    
+    
      public class Gosling
     {
-        public ArrayList gosling_position = new ArrayList(3); //don't need this any more because of new savesystem 
+        //public ArrayList gosling_position = new ArrayList(3); //don't need this any more because of new savesystem 
         //- i don't need to save the position of the elements.
         public ArrayList longest_item_looked_at = new ArrayList();
         public float time_spawned = 0;
@@ -85,6 +86,23 @@ public class goslingBehaviour : MonoBehaviour
 
     }
    
+    
+     void rayCast(){
+         Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit; 
+        if (Physics.Raycast (ray, out hit, rayLength, mask)){
+            if((hit.collider.gameObject.name == "Capsule")) //&(criticalPeriod == true)) <-- add this back in later
+            {
+           Debug.DrawLine(ray.origin, hit.point, Color.blue);
+            }
+
+            else{
+                Debug.DrawLine(ray.origin, ray.origin + ray.direction * rayLength, Color.magenta);
+            }
+       }
+        }
+     
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -92,14 +110,16 @@ public class goslingBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate() //my game loop
     {
         float t = Time.time - startTime;
         string minutes = ((int)t / 60).ToString();
         string seconds = ((int)t % 60).ToString();
         int hours = ((int)t / 60);
+         //all of the above gets the time that has passed
         Debug.Log(hours);
         critical_period(hours);
+        rayCast();
 
     }
 

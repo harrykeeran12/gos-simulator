@@ -84,7 +84,7 @@ public class graphicalSettings : MonoBehaviour
             settingsJSON.Add("evaluation", temp_settings[0].ToString());
             settingsJSON.Add("no_goslings", temp_settings[1].ToString());
             settingsJSON.Add("no_items", temp_settings[2].ToString());
-
+//adds to file
             File.WriteAllText(path, settingsJSON.ToString());
 
         }

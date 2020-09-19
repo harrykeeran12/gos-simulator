@@ -18,6 +18,7 @@ public class subMenu : MonoBehaviour
     private int item_number;
     public float counter;
     public float timescale = 0f;
+    public Camera gameCamera;
 
 
 
@@ -67,6 +68,15 @@ public class subMenu : MonoBehaviour
     }
     void Destruction()
     {
+
+      Ray ray = gameCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitInfo;
+
+        if((Physics.Raycast(ray, out hitInfo))&&(Input.GetKeyDown("1"))) {
+            Destroy(hitInfo.collider.gameObject);
+        }
+
+        
         if (Input.GetKeyDown("l"))
         {
             Destroy(this.gameObject);
@@ -103,7 +113,7 @@ public class subMenu : MonoBehaviour
     {
         PlayerPrefs.SetInt("SimSaved", SceneManager.GetActiveScene().buildIndex);
     }
-
+    
 
 }
 
