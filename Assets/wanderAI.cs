@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class wanderAI : MonoBehaviour
@@ -13,15 +12,7 @@ public class wanderAI : MonoBehaviour
     private bool isRotatingLeft;
     private bool isRotatingRight;
     private bool isWalking;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+   // all these variables are used to create random movement for the gosling.
     void Update()
     {
         if (isWandering == false)
@@ -41,7 +32,7 @@ public class wanderAI : MonoBehaviour
             transform.position += transform.forward * moveSpeed;
         }
     }
-    IEnumerator Wander()
+    IEnumerator Wander() //this ienumerator is called every time the gosling wanders, it changes the boolean values so it is always called.
     {
         int rotationTime = Random.Range(1, 3); //time of rotation
         int rotationWait = Random.Range(1, 5); //time in between rotation

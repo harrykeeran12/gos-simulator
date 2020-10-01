@@ -16,6 +16,8 @@ public class goslingBehaviour : MonoBehaviour
     private float startTime = 0;
     
     public LayerMask mask;
+    public Gosling gos;
+
 
     
     
@@ -87,17 +89,25 @@ public class goslingBehaviour : MonoBehaviour
     }
    
     
-     void rayCast(){
-         Ray ray = new Ray(transform.position, transform.forward);
+     void rayCast(Gosling){
+        Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit; 
         if (Physics.Raycast (ray, out hit, rayLength, mask)){
             if((hit.collider.gameObject.name == "Capsule")) //&(criticalPeriod == true)) <-- add this back in later
             {
-           Debug.DrawLine(ray.origin, hit.point, Color.blue);
+
+                Debug.DrawLine(ray.origin, hit.point, Color.blue);
+                gos.longest_item_looked_at.Add(hit.collider.gameObject.name.ToString()); //<- does not work for some reason
+                gos.longest_item_looked_at.Add(Time.unscaledTime - hours);
+                
+
+                
+
+
             }
 
             else{
-                Debug.DrawLine(ray.origin, ray.origin + ray.direction * rayLength, Color.magenta);
+                Debug.DrawLine(ray.origin, ray.origin + ray.direction * rayLength, Color.green);
             }
        }
         }
@@ -107,6 +117,8 @@ public class goslingBehaviour : MonoBehaviour
     void Start()
     {
         float startTime = Time.time;
+        
+
     }
 
     // Update is called once per frame
@@ -117,9 +129,9 @@ public class goslingBehaviour : MonoBehaviour
         string seconds = ((int)t % 60).ToString();
         int hours = ((int)t / 60);
          //all of the above gets the time that has passed
-        Debug.Log(hours);
+        //Debug.Log(hours);
         critical_period(hours);
-        rayCast();
+        rayCast(gos);
 
     }
 
