@@ -21,22 +21,20 @@ public class goslingBehaviour : MonoBehaviour
 
     
     
-     public class Gosling
-    {
+     public class Gosling{
         //public ArrayList gosling_position = new ArrayList(3); //don't need this any more because of new savesystem 
         //- i don't need to save the position of the elements.
         public ArrayList longest_item_looked_at = new ArrayList();
         public float time_spawned = 0;
         public bool criticalPeriod = false;
         
-    }
-     IEnumerator time()//ienumerators allow you to wait for a certain period of time -> this method of waiting for time does not work
-    {
-        yield return new WaitForSecondsRealtime(1);
-    }
+    
+        // IEnumerator time()//ienumerators allow you to wait for a certain period of time -> this method of waiting for time does not work
+        //{
+         //  yield return new WaitForSecondsRealtime(1);
+         //}
 
-    void critical_period(int hours)
-    {
+    void critical_period(int hours){
         string path = Application.persistentDataPath + "/settings.json";
         string strtempSettings = File.ReadAllText(path);
         JSONObject settingsJSON = (JSONObject)JSON.Parse(strtempSettings);
@@ -97,8 +95,8 @@ public class goslingBehaviour : MonoBehaviour
             {
 
                 Debug.DrawLine(ray.origin, hit.point, Color.blue);
-                gos.longest_item_looked_at.Add(hit.collider.gameObject.name.ToString()); //<- does not work for some reason
-                gos.longest_item_looked_at.Add(Time.unscaledTime - hours);
+                //gos.longest_item_looked_at.Add(hit.collider.gameObject.name.ToString()); //<- does not work for some reason
+                //gos.longest_item_looked_at.Add(Time.unscaledTime - hours);
                 
 
                 
@@ -111,6 +109,7 @@ public class goslingBehaviour : MonoBehaviour
             }
        }
         }
+    }
      
     
     // Start is called before the first frame update
