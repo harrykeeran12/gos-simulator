@@ -19,6 +19,9 @@ public class subMenu : MonoBehaviour
     public float counter;
     public float timescale = 0f;
     public Camera gameCamera;
+    public bool isPaused;
+    public float temp_timescale;
+    public GameObject pauseMenu;
 
 
 
@@ -93,16 +96,26 @@ public class subMenu : MonoBehaviour
         Time.timeScale = timescale - 1;
         //need to decrease the time + have a button
     }
-    void PauseSim()
+    void PauseSim(GameObject PauseMenu)
     {
-
+        isPaused = true;
+        if (isPaused)
+        {
+            temp_timescale = Time.timeScale;
+            PauseMenu.SetActive(true);
+            //the canvas can change at this point + i can add the save button functions in the inspector.
+        }
     }
-    void PlaySim()
+    void PlaySim(GameObject PauseMenu)
     {
-
+        isPaused = false;
+        PauseMenu.SetActive(false);
+        //this can be the same button as the pause menu- it will allow me to change the canvas back to normal , and turn off the pause menu
     }
     void helpButton()
     {
+
+       //switch here
         //this button needs to actually make sense - needs to know what is happening on screen + explain stuff properly. 
     }
     void loadSim()
