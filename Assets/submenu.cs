@@ -20,8 +20,10 @@ public class subMenu : MonoBehaviour
     public float timescale = 0f;
     public Camera gameCamera;
     public bool isPaused;
-    public float temp_timescale;
-    public GameObject pauseMenu;
+    private float temp_timescale;
+    private GameObject pauseMenu;
+    public Text multiplier;
+    public float x;
 
 
 
@@ -37,8 +39,7 @@ public class subMenu : MonoBehaviour
     }
 
     // Update is called once per frame
-   void FixedUpdate()
-    {
+   void FixedUpdate(){
         newClone();
        
         
@@ -86,15 +87,24 @@ public class subMenu : MonoBehaviour
         }
 
     }
-    void SpeedTime()
+    public void SpeedTime()
     {
         Time.timeScale = timescale + 1;
         //need to do an button to increase the time
+        x = Time.timeScale;
+        timescale = Time.timeScale;
+        multiplier.text = ("Multiplier:" + x.ToString());
+
+
+
     }
-    void SlowTime()
+    public void SlowTime()
     {
         Time.timeScale = timescale - 1;
         //need to decrease the time + have a button
+        x = Time.timeScale;
+        timescale = Time.timeScale;
+        multiplier.text = ("Multiplier:" + x.ToString());
     }
     void PauseSim(GameObject PauseMenu)
     {
