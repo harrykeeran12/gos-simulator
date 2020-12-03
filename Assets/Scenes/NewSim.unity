@@ -455,13 +455,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 315570746}
-  m_RootOrder: 2
+  m_Father: {fileID: 1790759430}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4, y: 71}
-  m_SizeDelta: {x: -50, y: -270}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &248013655
 MonoBehaviour:
@@ -671,13 +671,14 @@ GameObject:
   - component: {fileID: 315570746}
   - component: {fileID: 315570748}
   - component: {fileID: 315570747}
+  - component: {fileID: 315570749}
   m_Layer: 5
   m_Name: Pause Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &315570746
 RectTransform:
   m_ObjectHideFlags: 0
@@ -691,9 +692,7 @@ RectTransform:
   m_Children:
   - {fileID: 1270572325}
   - {fileID: 1790759430}
-  - {fileID: 248013654}
   - {fileID: 1001605051}
-  - {fileID: 415553321}
   - {fileID: 946942797}
   m_Father: {fileID: 1294618870}
   m_RootOrder: 8
@@ -740,6 +739,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315570745}
   m_CullTransparentMesh: 0
+--- !u!114 &315570749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315570745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8039394a2fcb31649936a75037ced53d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &341411016
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,7 +994,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 1024
-  duck: {fileID: 0}
+  time_spawned: 0
 --- !u!114 &371488614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,6 +1028,7 @@ MonoBehaviour:
   timescale: 0
   gameCamera: {fileID: 0}
   isPaused: 0
+  pauseMenu: {fileID: 0}
   multiplier: {fileID: 0}
   x: 0
 --- !u!114 &371488616
@@ -1060,13 +1072,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 315570746}
-  m_RootOrder: 4
+  m_Father: {fileID: 1001605051}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4, y: 20.980011}
-  m_SizeDelta: {x: -50, y: -270}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &415553322
 MonoBehaviour:
@@ -1343,7 +1355,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 695837849}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1294618871}
+        m_MethodName: PauseSim
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 315570745}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &695837849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,7 +1711,7 @@ RectTransform:
   m_Children:
   - {fileID: 1699700874}
   m_Father: {fileID: 315570746}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1960,9 +1983,10 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 415553321}
   m_Father: {fileID: 315570746}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2011,7 +2035,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1001605053}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 315570749}
+        m_MethodName: loadSim
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1001605053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2130,7 +2165,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1022675790}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1294618871}
+        m_MethodName: PlaySim
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 315570745}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1022675790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2198,8 +2244,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 2.65
+  m_Radius: 0.52
+  m_Height: 2.11
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1074726835
@@ -2568,7 +2614,7 @@ GameObject:
   - component: {fileID: 1270572327}
   - component: {fileID: 1270572326}
   m_Layer: 5
-  m_Name: PauseMenu
+  m_Name: PauseMenuTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2763,6 +2809,7 @@ MonoBehaviour:
   timescale: 0
   gameCamera: {fileID: 88831388}
   isPaused: 0
+  pauseMenu: {fileID: 315570745}
   multiplier: {fileID: 1684150129}
   x: 0
 --- !u!1 &1392599631
@@ -3877,7 +3924,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 248013654}
   m_Father: {fileID: 315570746}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3928,7 +3976,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1790759432}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 315570749}
+        m_MethodName: saveSim
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1790759432
 MonoBehaviour:
   m_ObjectHideFlags: 0

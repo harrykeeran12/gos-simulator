@@ -20,7 +20,7 @@ public class subMenu : MonoBehaviour
     public float timescale = 0f;
     public Camera gameCamera;
     public bool isPaused;
-    private float temp_timescale;
+    private float temptimeScale;
     public GameObject pauseMenu;
     public Text multiplier;
     public float x;
@@ -111,7 +111,7 @@ public class subMenu : MonoBehaviour
         isPaused = true;
         if (isPaused)
         {
-            temp_timescale = Time.timeScale;
+            temptimeScale = Time.timeScale;
             PauseMenu.SetActive(true);
             //the canvas can change at this point + i can add the save button functions in the inspector.
         }

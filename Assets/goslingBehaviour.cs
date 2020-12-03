@@ -13,49 +13,38 @@ public class goslingBehaviour : MonoBehaviour
     public int temp = 0;
     private float startTime = 0;
     public LayerMask mask;
-    public Gosling duck;
+    //public Gosling duck;
 
-    public class Gosling : goslingBehaviour {
+    //public class Gosling : goslingBehaviour {
         //public ArrayList gosling_position = new ArrayList(3); //don't need this any more because of new savesystem 
         //- i don't need to save the position of the elements.
         public ArrayList longest_item_looked_at = new ArrayList ();
-        public float time_spawned = 0;
-        public bool criticalPeriod = false;
-
-        // IEnumerator time()//ienumerators allow you to wait for a certain period of time -> this method of waiting for time does not work
-        //{
-        //  yield return new WaitForSecondsRealtime(1);
-        //}
-
+        public float time_spawned;
+        
         public void critical_period (int hours) {
-            string path = Application.persistentDataPath + "/settings.json";
-            string strtempSettings = File.ReadAllText (path);
-            JSONObject settingsJSON = (JSONObject) JSON.Parse (strtempSettings);
-            evaluation = settingsJSON["evaluation"];
+            string path = Application.persistentDataPath + "/settings.json"; //reads the path of the settings file
+            string strtempSettings = File.ReadAllText (path); //opens file
+            JSONObject settingsJSON = (JSONObject) JSON.Parse (strtempSettings); //changes json file to c# readable file
+            evaluation = settingsJSON["evaluation"]; //assigns evaluation to the evaluation value in the settings file
             if (evaluation == false) {
                 int upper = 48;
                 int lower = 24;
                 if ((hours > lower) & (hours < upper)) {
                     criticalPeriod = true;
-                    Debug.Log ("critical period is true");
-                     //-> take this out
+                    //evaluates the critical period
 
-                } else if (hours < 24) {
-
-                    //-> take this out
-
+                } 
+                else if (hours < 24) {
+                    
                 }
 
-            } else {
+            } 
+            else {
                 int upper = 17;
                 int lower = 12;
                 if ((hours > lower) & (hours < upper)) {
                     criticalPeriod = true;
-                    Debug.Log ("critical period is true");
-                         
-
-                } else if (hours < 12) {
-                     
+                    //changes the critical period of the gosling
 
                 }
             }
@@ -72,18 +61,18 @@ public class goslingBehaviour : MonoBehaviour
                     Debug.DrawLine (ray.origin, hit.point, Color.blue);
                     
 
-                } else {
+                } 
+                else {
                     Debug.DrawLine (ray.origin, ray.origin + ray.direction * rayLength, Color.green);
                 }
             }
         }
-    }
+    
 
 
     // Start is called before the first frame update
     void Start () {
         float startTime = Time.time;
-
     }
 
     // Update is called once per frame
@@ -95,8 +84,8 @@ public class goslingBehaviour : MonoBehaviour
         int hours = ((int) t / 60);
         //all of the above gets the time that has passed
         //Debug.Log(hours);
-        duck.critical_period(hours);
-        duck.rayCast();
+        critical_period(hours);
+        rayCast();
     }
 }
 

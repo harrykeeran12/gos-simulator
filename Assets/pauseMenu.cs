@@ -3,29 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class pauseMenu : EditorSceneManager
-{
+public class pauseMenu : MonoBehaviour {
+     public void saveSim()
+    {
+        PlayerPrefs.SetInt("SimSaved", SceneManager.GetActiveScene().buildIndex); //use player prefs to save values between scenes and load them.
+    }
     public void loadSim()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("SimSaved"));
+        SceneManager.LoadScene(PlayerPrefs.GetInt("SimSaved")); // loads the exact build index of the scene
     }
-    public void saveSim()
-    {
-        EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene(),"Assets/MyScenes/SimSaved.unity");
-        PlayerPrefs.SetInt("SimSaved", SceneManager.GetActiveScene().buildIndex);
-    }
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }
