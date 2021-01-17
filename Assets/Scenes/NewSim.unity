@@ -989,12 +989,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayLength: 500
   hours: 0
-  criticalPeriod: 0
-  temp: 0
   mask:
     serializedVersion: 2
     m_Bits: 1024
-  time_spawned: 0
 --- !u!114 &371488614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,11 +1021,13 @@ MonoBehaviour:
   gos: {fileID: 1083957633}
   spawnee: {fileID: 371488607}
   item: {fileID: 0}
+  gosling: {fileID: 0}
   counter: 0
   timescale: 0
   gameCamera: {fileID: 0}
-  isPaused: 0
   pauseMenu: {fileID: 0}
+  pauseButton: {fileID: 0}
+  playButton: {fileID: 0}
   multiplier: {fileID: 0}
   x: 0
 --- !u!114 &371488616
@@ -1236,7 +1235,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 603582062}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1294618871}
+        m_MethodName: newClone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &603582062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1358,10 +1368,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1294618871}
         m_MethodName: PauseSim
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 315570745}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2168,10 +2178,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1294618871}
         m_MethodName: PlaySim
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 315570745}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2805,11 +2815,13 @@ MonoBehaviour:
   gos: {fileID: 371488611}
   spawnee: {fileID: 1083957629}
   item: {fileID: 1074726833}
+  gosling: {fileID: 371488607}
   counter: 0
   timescale: 0
   gameCamera: {fileID: 88831388}
-  isPaused: 0
   pauseMenu: {fileID: 315570745}
+  pauseButton: {fileID: 695837846}
+  playButton: {fileID: 1022675787}
   multiplier: {fileID: 1684150129}
   x: 0
 --- !u!1 &1392599631
@@ -4072,7 +4084,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1806801672
 MeshRenderer:
@@ -4293,7 +4305,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 3.24}
 --- !u!23 &2127374873
 MeshRenderer:
   m_ObjectHideFlags: 0

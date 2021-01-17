@@ -1,142 +1,142 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.UI;
 using System.IO;
-using SimpleJSON;
 using System.Threading;
+using SimpleJSON;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
-public class subMenu : MonoBehaviour
-{
-    public Transform gos;
-    public GameObject spawnee;
-    public GameObject item;
-    private int no_gos;
-    private int no_item;
-    private int item_number;
-    public float counter;
-    public float timescale = 0f;
-    public Camera gameCamera;
-    public bool isPaused;
-    private float temptimeScale;
-    public GameObject pauseMenu;
-    public Text multiplier;
-    public float x;
-
-
+public class subMenu : MonoBehaviour {
+    public Transform gos; //this variable is required for the instantiation of the gosling. 
+    public GameObject spawnee; //this is the placement of where the object is.
+    public GameObject item; //this is the first item that is instantiated from
+    public GameObject gosling; // this is the first gosling that is to be instantiated from.
+    private int no_gos; //this is a temporary variable that is taken from the settings.json file.
+    private int no_item; //this is another temporary variable that is taken from the settings.json file.
+    private bool evaluation; //the temporary variable that is taken from the settings.json file.
+    private int item_number; //this is the amount of items in the scene right now.     
+    public int counter; //this is the amount of goslings in the scene currently.
+    public float timescale = 0f; //this is a temporary value for the timescale. This is changed by pressing the speed up + slow down buttons.
+    public Camera gameCamera; //this is required so that the destruction method works.
+    public static bool isPaused; //this pauses the simulation.
+    private float temptimeScale; //this stores the variable before the simulation has been sped up.
+    public GameObject pauseMenu; //this is required so that the pausemenu can be enabled and disabled.
+    public GameObject pauseButton;//this is required to turn off and on the pause button.
+    public GameObject playButton;//this is also required to turn the play button on from behind the pause button.
+    public Text multiplier; //this is the text value that changes
+    public float x; //this is saved as the new time scale
+    public ArrayList helpstatements = new ArrayList (3); //list of the help button statements.
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start () {
         string path = Application.persistentDataPath + "/settings.json";
-        string strtempSettings = File.ReadAllText(path);
-        JSONObject settingsJSON = (JSONObject)JSON.Parse(strtempSettings);
+        string strtempSettings = File.ReadAllText (path);
+        JSONObject settingsJSON = (JSONObject) JSON.Parse (strtempSettings);
         no_gos = settingsJSON["no_goslings"];
         no_item = settingsJSON["no_item"];
-        //loads the no_gos settings and no_items
+        evaluation = settingsJSON["evaluation"];
+        //loads the no_gos settings, no_items, and evaluation from the settings.json file.
     }
 
-    // Update is called once per frame
-   void FixedUpdate(){
-        newClone();
-       
-        
-    }
-    void newClone()
+    public void newClone () //instantiates the gosling
     {
-        if (counter <= no_gos)
-        {
-            if (Input.GetKeyDown("n"))//on click - will change
-            {
-                Instantiate(spawnee, new Vector3(0, 0, 0), gos.rotation);
-                counter++;
 
-
-            }
-        }
-    }
-    void newItem()
-    {
-        if (item_number <= no_item)
-        {
-            if (Input.GetKeyDown("k"))//this is also temporary
-            {
-                Instantiate(item, new Vector3(0, 0, 0), gos.rotation);
-                item_number++;
-            }
-            
+        if (counter <= no_gos) {
+            Instantiate (gosling, new Vector3 (0, 0, 0), gos.rotation);
+            counter++;
 
         }
     }
-    void Destruction()
+    void newItem () //instantiates the item
     {
 
-      Ray ray = gameCamera.ScreenPointToRay(Input.mousePosition);
+        if (item_number <= no_item) {
+            Instantiate (item, new Vector3 (0, 0, 0), gos.rotation);
+            item_number++;
+
+        }
+    }
+    void Destruction () //this method destroys the game object at a click.
+    {
+
+        Ray ray = gameCamera.ScreenPointToRay (Input.mousePosition);
         RaycastHit hitInfo;
 
-        if((Physics.Raycast(ray, out hitInfo))&&(Input.GetKeyDown("1"))) {
-            Destroy(hitInfo.collider.gameObject);
+        if ((Physics.Raycast (ray, out hitInfo)) && (Input.GetKeyDown ("1"))) {
+
+            Destroy (hitInfo.collider.gameObject);
         }
 
-        
-        if (Input.GetKeyDown("l"))
-        {
-            Destroy(this.gameObject);
+        if (Input.GetKeyDown ("l")) {
+            Destroy (this.gameObject);
         }
 
     }
-    public void SpeedTime()
+    public void SpeedTime () //speeds up the timescale.
     {
         Time.timeScale = timescale + 1;
         //need to do an button to increase the time
         x = Time.timeScale;
         timescale = Time.timeScale;
-        multiplier.text = ("Multiplier:" + x.ToString());
-
-
+        multiplier.text = ("Multiplier:" + x.ToString ());
 
     }
-    public void SlowTime()
+    public void SlowTime () //slows down the timescale.
     {
         Time.timeScale = timescale - 1;
         //need to decrease the time + have a button
         x = Time.timeScale;
         timescale = Time.timeScale;
-        multiplier.text = ("Multiplier:" + x.ToString());
+        multiplier.text = ("Multiplier:" + x.ToString ());
     }
-    public void PauseSim(GameObject PauseMenu)
+    public void PauseSim () //turns on the pause menu + pauses the simulation
     {
         isPaused = true;
-        if (isPaused)
-        {
+        if (isPaused) {
             temptimeScale = Time.timeScale;
-            PauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+            pauseMenu.SetActive (true);
+            pauseButton.SetActive (false);
+            playButton.SetActive(true);
             //the canvas can change at this point + i can add the save button functions in the inspector.
         }
     }
-    public void PlaySim(GameObject PauseMenu)
-    {
+    public void PlaySim () {
         isPaused = false;
-        PauseMenu.SetActive(false);
-        //this can be the same button as the pause menu- it will allow me to change the canvas back to normal , and turn off the pause menu
+        pauseMenu.SetActive (false);
+        pauseButton.SetActive (true);
+        playButton.SetActive(false);
+        Time.timeScale = temptimeScale;
+        //this can be the same button as the pause menu- it will turn off the pause menu
     }
-    void helpButton()
-    {
+    public void helpButton (Text message, ArrayList helpstatements) {
+        helpstatements.Add ("The evaluation is currently true. Hess thought that goslings imprinted in a much shorter timeframe, around 12 to 17 hours.");
 
-       //switch here
-        //this button needs to actually make sense - needs to know what is happening on screen + explain stuff properly. 
+        helpstatements.Add ("A gosling's critical period is the time at which imprinting is most likely to take place.");
+
+        helpstatements.Add ("The evaluation mode is currently false");
+
+        if (pauseMenu.activeSelf == false) {
+            if (evaluation == true) {
+                message.text = helpstatements[0].ToString ();
+            } else if (goslingBehaviour.criticalPeriod == true) {
+                message.text = helpstatements[1].ToString ();
+            } else {
+                message.text = helpstatements[2].ToString ();
+            }
+
+        }
+        //displays help button if a specific thing is true. 
     }
-    void loadSim()
+    public void loadSim () //loads simulation
     {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("SimSaved"));
+        SceneManager.LoadScene (PlayerPrefs.GetInt ("SimSaved"));
     }
-    void saveSim()
+    public void saveSim () //saves simulation
     {
-        PlayerPrefs.SetInt("SimSaved", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetInt ("SimSaved", SceneManager.GetActiveScene ().buildIndex);
     }
-    
 
 }
-
