@@ -1,17 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
+using UnityEditor;
+using UnityEditor.SceneManagement;
 public class pauseMenu : MonoBehaviour {
-    
-     public void saveSim()
+
+    public GameObject PauseMenu;
+        
+    public void saveSim()
     {
-        PlayerPrefs.SetInt("SimSaved", SceneManager.GetActiveScene().buildIndex); //use player prefs to save values between scenes and load them.
+       EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene(), "/SimSaved.unity", true); //cannot be used during play mode.
+
     }
     public void loadSim()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("SimSaved")); // loads the exact build index of the scene
+     /*    EditorSceneManager.LoadSceneInPlayMode("/SimSaved",  LoadSceneMode.Additive);  */
+        
     }
-   
+    public void Quit(){
+       Application.Quit ();
+    }
 }
+   
+

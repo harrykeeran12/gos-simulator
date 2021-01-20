@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class wanderAI : MonoBehaviour
 {
-    public float moveSpeed = 3f;//the speed at which the gosling moves
-    public float rotateSpeed = 100f;//rotation speed
+    public static float moveSpeed = 0.05f;//the speed at which the gosling moves
+    private float rotateSpeed = 50f;//rotation speed
     private bool isWandering; //checks if the gosling is currently moving
     private bool isRotatingLeft;//checks if gosling is rotating left
     private bool isRotatingRight;//checks if gosling is rotating right
@@ -13,8 +13,7 @@ public class wanderAI : MonoBehaviour
     void Update()
     {
         if ((subMenu.isPaused == false))
-        {
-            
+        {        
             if (isWandering == false)
             {
                 StartCoroutine(Wander());

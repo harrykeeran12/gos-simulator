@@ -23,9 +23,10 @@ public class subMenu : MonoBehaviour {
     public static bool isPaused; //this pauses the simulation.
     private float temptimeScale; //this stores the variable before the simulation has been sped up.
     public GameObject pauseMenu; //this is required so that the pausemenu can be enabled and disabled.
-    public GameObject pauseButton;//this is required to turn off and on the pause button.
-    public GameObject playButton;//this is also required to turn the play button on from behind the pause button.
+    public GameObject pauseButton; //this is required to turn off and on the pause button.
+    public GameObject playButton; //this is also required to turn the play button on from behind the pause button.
     public Text multiplier; //this is the text value that changes
+    public Text message; //this is the value for the help button.
     public float x; //this is saved as the new time scale
     public ArrayList helpstatements = new ArrayList (3); //list of the help button statements.
 
@@ -80,6 +81,7 @@ public class subMenu : MonoBehaviour {
         //need to do an button to increase the time
         x = Time.timeScale;
         timescale = Time.timeScale;
+        wanderAI.moveSpeed = (timescale + Time.timeScale) / 100f;
         multiplier.text = ("Multiplier:" + x.ToString ());
 
     }
@@ -89,7 +91,20 @@ public class subMenu : MonoBehaviour {
         //need to decrease the time + have a button
         x = Time.timeScale;
         timescale = Time.timeScale;
-        multiplier.text = ("Multiplier:" + x.ToString ());
+        if (Time.timeScale <= 0f){
+            Time.timeScale = 1f;
+        }
+        if(Time.timeScale > 0f){//validation makes sure that time does not get to 0
+            wanderAI.moveSpeed = (timescale - Time.timeScale) / 100f;
+            if (wanderAI.moveSpeed == 0f){
+                wanderAI.moveSpeed = 0.01f; //failsafe so that objects dont stop.
+            }
+            multiplier.text = ("Multiplier:" + x.ToString ());
+            
+        }
+        
+
+        
     }
     public void PauseSim () //turns on the pause menu + pauses the simulation
     {
@@ -99,7 +114,7 @@ public class subMenu : MonoBehaviour {
             Time.timeScale = 0f;
             pauseMenu.SetActive (true);
             pauseButton.SetActive (false);
-            playButton.SetActive(true);
+            playButton.SetActive (true);
             //the canvas can change at this point + i can add the save button functions in the inspector.
         }
     }
@@ -107,11 +122,11 @@ public class subMenu : MonoBehaviour {
         isPaused = false;
         pauseMenu.SetActive (false);
         pauseButton.SetActive (true);
-        playButton.SetActive(false);
+        playButton.SetActive (false);
         Time.timeScale = temptimeScale;
         //this can be the same button as the pause menu- it will turn off the pause menu
     }
-    public void helpButton (Text message, ArrayList helpstatements) {
+    public void helpButton (ArrayList helpstatements) {
         helpstatements.Add ("The evaluation is currently true. Hess thought that goslings imprinted in a much shorter timeframe, around 12 to 17 hours.");
 
         helpstatements.Add ("A gosling's critical period is the time at which imprinting is most likely to take place.");

@@ -9,7 +9,7 @@ public class goslingBehaviour : MonoBehaviour
     public float rayLength = 500f; //the ray length that is outputted by the gosling
     private bool evaluation; //a temporary variable for the critical period function
     public int hours = 0; //starting value for the hours variable, resets it each time a new gosling is spawned.
-    public static bool criticalPeriod;
+    public static bool criticalPeriod = false;
     private float startTime = 0; //temporary variable for the start time of the gosling
     public LayerMask mask; //this mask detects if the gosling hits a item with the raycast. 
 

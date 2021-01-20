@@ -695,7 +695,7 @@ RectTransform:
   - {fileID: 1001605051}
   - {fileID: 946942797}
   m_Father: {fileID: 1294618870}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -751,6 +751,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8039394a2fcb31649936a75037ced53d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseMenu: {fileID: 315570745}
+--- !u!1 &315815882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 315815885}
+  - component: {fileID: 315815884}
+  - component: {fileID: 315815883}
+  m_Layer: 5
+  m_Name: Message
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &315815883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315815882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 21
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 54
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &315815884
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315815882}
+  m_CullTransparentMesh: 0
+--- !u!224 &315815885
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315815882}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1294618870}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 100, y: 229.7}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &341411016
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,7 +955,6 @@ GameObject:
   - component: {fileID: 371488612}
   - component: {fileID: 371488614}
   - component: {fileID: 371488613}
-  - component: {fileID: 371488615}
   - component: {fileID: 371488616}
   m_Layer: 8
   m_Name: Gosling
@@ -953,7 +1031,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 371488607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 1, z: 5}
+  m_LocalPosition: {x: 2.5, y: -1.067236, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -973,7 +1051,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &371488613
 MonoBehaviour:
@@ -1004,32 +1082,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e351b148ef5fb7e41838d8f4d8acd2e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.05
-  rotateSpeed: 200
---- !u!114 &371488615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 371488607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b396065ea547e244a764a3f83e6fda7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gos: {fileID: 1083957633}
-  spawnee: {fileID: 371488607}
-  item: {fileID: 0}
-  gosling: {fileID: 0}
-  counter: 0
-  timescale: 0
-  gameCamera: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  pauseButton: {fileID: 0}
-  playButton: {fileID: 0}
-  multiplier: {fileID: 0}
-  x: 0
+  moveSpeed: 3
+  rotateSpeed: 100
 --- !u!114 &371488616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1770,7 +1824,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 946942799}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 315570749}
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &946942799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2313,7 +2378,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074726833}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -1.41, y: 2.01, z: 1.0438614}
+  m_LocalPosition: {x: -1.41, y: -0.067236, z: 1.0438614}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2327,7 +2392,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074726833}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -2791,6 +2856,7 @@ RectTransform:
   - {fileID: 915471897}
   - {fileID: 603582060}
   - {fileID: 1684150131}
+  - {fileID: 315815885}
   - {fileID: 315570746}
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -2823,6 +2889,7 @@ MonoBehaviour:
   pauseButton: {fileID: 695837846}
   playButton: {fileID: 1022675787}
   multiplier: {fileID: 1684150129}
+  message: {fileID: 315815883}
   x: 0
 --- !u!1 &1392599631
 GameObject:
